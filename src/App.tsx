@@ -1,11 +1,11 @@
-import NavBar from "./components/NavBar.jsx";
-import SearchPage from "./Pages/SearchPage.jsx";
+import NavBar from "./components/NavBar";
+import SearchPage from "./Pages/SearchPage";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import ToPlayPage from "./Pages/ToPlayPage.jsx";
-import PlayingPage from "./Pages/PlayingPage.jsx";
-import PlayedPage from "./Pages/PlayedPage.jsx";
-import NotFoundPage from "./Pages/NotFoundPage.jsx";
-import LandingPage from "./Pages/LandingPage.jsx";
+import ToPlayPage from "./Pages/ToPlayPage";
+import PlayingPage from "./Pages/PlayingPage";
+import PlayedPage from "./Pages/PlayedPage";
+import NotFoundPage from "./Pages/NotFoundPage";
+import LandingPage from "./Pages/LandingPage";
 
 function App() {
   return (
