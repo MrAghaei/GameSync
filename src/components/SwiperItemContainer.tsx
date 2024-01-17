@@ -1,9 +1,11 @@
-import Item from "./Item";
+import Item, { ItemInputDataModel } from "./Item";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 interface SwiperItemContainerInputDataModel {
-  headline: string[];
+  headline: string;
+  gameList: ItemInputDataModel[];
 }
+
 function SwiperItemContainer(data: SwiperItemContainerInputDataModel) {
   return (
     <div className={"bg-gray-dark max-w-fit p-10"}>
@@ -36,21 +38,11 @@ function SwiperItemContainer(data: SwiperItemContainerInputDataModel) {
           },
         }}
       >
-        <SwiperSlide>
-          <Item />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Item />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Item />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Item />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Item />
-        </SwiperSlide>
+        {data.gameList.map((item) => (
+          <SwiperSlide key={item.gameName}>
+            <Item data={item} key={item.gameName} />
+          </SwiperSlide>
+        ))}
       </Swiper>
     </div>
   );
