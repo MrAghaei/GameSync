@@ -13,13 +13,7 @@ export interface ItemInputModel {
   data: ItemInputDataModel;
 }
 
-
 function Item(data: ItemInputModel) {
-
-function Item() {
- 
-
-
   function handleButtonClick() {
     console.log("button clicked");
   }
@@ -28,10 +22,8 @@ function Item() {
     <div className="bg-black-secondary max-w-full md:max-w-72 h-auto md:h-96 rounded-2xl flex flex-col overflow-hidden">
       <div className="w-full h-1/2">
         <img
-
           alt={data.data.imageAlt}
           src={data.data.imageSource}
-
           className="object-cover w-full h-full"
         />
       </div>
@@ -51,7 +43,6 @@ function Item() {
           </p>
           <PlatformImages platforms={data.data.platforms} />
         </div>
-
         <h3 className="font-bold text-2xl text-white">{data.data.gameName}</h3>
       </div>
 
@@ -59,7 +50,6 @@ function Item() {
         buttonType={data.data.buttonType}
         handleButtonClick={handleButtonClick}
       />
-
     </div>
   );
 }
