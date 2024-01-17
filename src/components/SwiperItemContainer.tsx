@@ -1,3 +1,4 @@
+
 import Item, { ItemInputDataModel } from "./Item";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -5,6 +6,7 @@ interface SwiperItemContainerInputDataModel {
   headline: string;
   gameList: ItemInputDataModel[];
 }
+
 
 function SwiperItemContainer(data: SwiperItemContainerInputDataModel) {
   return (
@@ -38,11 +40,13 @@ function SwiperItemContainer(data: SwiperItemContainerInputDataModel) {
           },
         }}
       >
+
         {data.gameList.map((item) => (
           <SwiperSlide key={item.gameName}>
             <Item data={item} key={item.gameName} />
           </SwiperSlide>
         ))}
+
       </Swiper>
     </div>
   );

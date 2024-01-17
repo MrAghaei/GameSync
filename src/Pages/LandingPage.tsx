@@ -1,8 +1,13 @@
+
 import Item, { ItemInputDataModel } from "../components/Item";
+
+import Item from "../components/Item";
+
 import SwiperItemContainer from "../components/SwiperItemContainer";
 
 function LandingPage() {
   const landingPageHeadline = ["Popular", "Top Games"];
+
 
   const gameList: ItemInputDataModel[] = [
     {
@@ -56,6 +61,12 @@ function LandingPage() {
         headline={landingPageHeadline[1]}
         gameList={gameList}
       />
+
+  return (
+    <div className={"bg-amber-300 container mx-auto"}>
+      <SwiperItemContainer headline={landingPageHeadline[0]} />
+      <SwiperItemContainer headline={landingPageHeadline[1]} />
+
     </div>
   );
 }
