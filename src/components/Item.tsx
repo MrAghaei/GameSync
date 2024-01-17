@@ -1,8 +1,11 @@
+import PlatformImages from "./PlatformImages";
+
 function Item() {
   let imageAlt;
   let imageSource = "./testback.jpg";
   let gameName = "Metro Exodus 2023";
   let metacriticScore = 88;
+  let platforms = ["playstation, xbox"];
   return (
     <div
       className={
@@ -20,7 +23,7 @@ function Item() {
       <div
         className={"bg-black-secondary  w-full h-full p-3 flex flex-col gap-4"}
       >
-        <div className={"flex gap-36"}>
+        <div className={"flex gap-36 items-center"}>
           <p
             className={`border-2 inline p-1 w-max rounded ${
               metacriticScore >= 75
@@ -34,9 +37,9 @@ function Item() {
           >
             {metacriticScore}
           </p>
-          <p className={""}>logo</p>
+          <PlatformImages platforms={platforms} />
         </div>
-        <h3 className={"font-bold text-2xl text-text-white"}>{gameName}</h3>
+        <h3 className={"font-bold text-2xl text-white"}>{gameName}</h3>
       </div>
     </div>
   );
