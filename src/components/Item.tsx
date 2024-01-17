@@ -1,15 +1,20 @@
 import PlatformImages from "./PlatformImages";
+import Button from "./Button";
 
 function Item() {
   let imageAlt;
   let imageSource = "./testback.jpg";
   let gameName = "Metro Exodus 2023";
   let metacriticScore = 88;
-  let platforms = ["playstation, xbox"];
+  let platforms = ["playstation", "xbox"];
+  const buttoneType = "Add";
+  function handleButtonClick() {
+    console.log("button clicked");
+  }
   return (
     <div
       className={
-        "bg-slate-800 w-80 h-96 rounded-md flex flex-col overflow-hidden"
+        "bg-black-secondary w-80 h-96 rounded-2xl flex flex-col overflow-hidden"
       }
     >
       <div className={"w-full h-1/2  "}>
@@ -21,7 +26,9 @@ function Item() {
       </div>
 
       <div
-        className={"bg-black-secondary  w-full h-full p-3 flex flex-col gap-4"}
+        className={
+          "bg-black-secondary  w-full h-44 p-3 flex flex-col gap-4 p-5"
+        }
       >
         <div className={"flex gap-36 items-center"}>
           <p
@@ -41,6 +48,8 @@ function Item() {
         </div>
         <h3 className={"font-bold text-2xl text-white"}>{gameName}</h3>
       </div>
+
+      <Button buttonType={buttoneType} handleButtonClick={handleButtonClick} />
     </div>
   );
 }

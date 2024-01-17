@@ -10,6 +10,7 @@ export default {
       green: "#16a34a",
       yellow: "#eab308",
       red: "#dc2626",
+      purple: "#a100ed",
     },
     extend: {},
   },

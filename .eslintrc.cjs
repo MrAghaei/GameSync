@@ -15,6 +15,8 @@ module.exports = {
     'react-refresh/only-export-components': [
       'warn',
       { allowConstantExport: true },
+
     ],
+    "no-use-before-define": "off", "@typescript-eslint/no-use-before-define": ["error"]
   },
 }
