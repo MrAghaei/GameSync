@@ -25,7 +25,7 @@ function App() {
           <Route path={"toplaypage"} element={<ToPlayPage />}></Route>
           <Route path={"playingpage"} element={<PlayingPage />}></Route>
           <Route path={"playedpage"} element={<PlayedPage />}></Route>
-          <Route path={"landingpage"} element={<LandingPage />}></Route>
+          <Route path={"landing"} element={<LandingPage />}></Route>
           <Route path={"*"} element={<NotFoundPage />}></Route>
         </Routes>
       </div>
