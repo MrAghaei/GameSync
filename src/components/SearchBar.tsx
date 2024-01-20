@@ -21,7 +21,7 @@ function SearchBar({ handleSearch }) {
         <TextField
           id="search-bar"
           className="bg-black-secondary rounded-3xl w-1/2"
-          onInput={handleSearch}
+          onChange={(e) => handleSearch(e.target.value)}
           label=""
           InputProps={{
             startAdornment: (
