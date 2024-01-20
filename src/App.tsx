@@ -6,12 +6,20 @@ import PlayingPage from "./Pages/PlayingPage";
 import PlayedPage from "./Pages/PlayedPage";
 import NotFoundPage from "./Pages/NotFoundPage";
 import LandingPage from "./Pages/LandingPage";
+import SearchBar from "./components/SearchBar";
+import { useNavigate } from "react-router-dom";
 
 function App() {
+  const navigate = useNavigate();
+  function handleSearch() {
+    console.log("searching");
+    navigate("/searchpage");
+  }
   return (
     <div className={"flex flex-row"}>
-      <BrowserRouter>
-        <NavBar />
+      <NavBar />
+      <div>
+        <SearchBar handleSearch={handleSearch} />
         <Routes>
           <Route path={"searchpage"} element={<SearchPage />}></Route>
           <Route path={"toplaypage"} element={<ToPlayPage />}></Route>
@@ -20,7 +28,7 @@ function App() {
           <Route path={"landingpage"} element={<LandingPage />}></Route>
           <Route path={"*"} element={<NotFoundPage />}></Route>
         </Routes>
-      </BrowserRouter>
+      </div>
     </div>
   );
 }
