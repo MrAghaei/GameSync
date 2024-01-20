@@ -8,12 +8,24 @@ import NotFoundPage from "./Pages/NotFoundPage";
 import LandingPage from "./Pages/LandingPage";
 import SearchBar from "./components/SearchBar";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 function App() {
   const navigate = useNavigate();
-  function handleSearch() {
-    console.log("searching");
-    navigate("/searchpage");
+  const [searchQuery, setSearchQuery] = useState("");
+  useEffect(() => {
+    const debounceTimeout = setTimeout(() => {
+      console.log("Performing search for:", searchQuery);
+    }, 500);
+
+    return () => clearTimeout(debounceTimeout);
+  }, [searchQuery, navigate]);
+  function handleSearch(value: string) {
+    navigate(`/searchpage`);
+    setSearchQuery(value);
+    if (value === "") {
+      navigate("/landingpage");
+    }
   }
   return (
     <div className={"flex flex-row"}>
@@ -25,7 +37,7 @@ function App() {
           <Route path={"toplaypage"} element={<ToPlayPage />}></Route>
           <Route path={"playingpage"} element={<PlayingPage />}></Route>
           <Route path={"playedpage"} element={<PlayedPage />}></Route>
-          <Route path={"landing"} element={<LandingPage />}></Route>
+          <Route path={"landingpage"} element={<LandingPage />}></Route>
           <Route path={"*"} element={<NotFoundPage />}></Route>
         </Routes>
       </div>
