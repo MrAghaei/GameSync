@@ -8,7 +8,7 @@ interface SwiperItemContainerInputDataModel {
 
 function SwiperItemContainer(data: SwiperItemContainerInputDataModel) {
   return (
-    <div className={"bg-gray-dark max-w-fit p-10"}>
+    <div className={"bg-gray-dark max-w-max h-auto p-10"}>
       <div className="flex flex-col md:flex-row justify-between items-center mb-10">
         <h2 className="text-3xl font-bold text-white mb-4 md:mb-0">
           {data.headline}
@@ -24,6 +24,10 @@ function SwiperItemContainer(data: SwiperItemContainerInputDataModel) {
         onSlideChange={() => console.log("slide change")}
         onSwiper={(swiper) => console.log(swiper)}
         breakpoints={{
+          480: {
+            slidesPerView: 1,
+            spaceBetween: 15,
+          },
           640: {
             slidesPerView: 2,
             spaceBetween: 20,
