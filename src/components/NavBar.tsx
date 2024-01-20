@@ -23,11 +23,11 @@ function NavBar() {
         <p>To Play</p>
       </NavLink>
       <NavLink to={"/playingpage"} className={"flex gap-2 items-center"}>
-        <img src={"./search-icon.svg"} className={"size-6"} />
+        <img src={"./playing-icon.svg"} className={"size-6"} />
         <p>Playing</p>
       </NavLink>
       <NavLink to={"/Played"} className={"flex gap-2 items-center"}>
-        <img src={"./search-icon.svg"} className={"size-6"} />
+        <img src={"./played-icon.svg"} className={"size-6"} />
         <p>Played</p>
       </NavLink>
     </div>
