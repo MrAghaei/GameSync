@@ -6,22 +6,23 @@ import PlayingPage from "./Pages/PlayingPage";
 import PlayedPage from "./Pages/PlayedPage";
 import NotFoundPage from "./Pages/NotFoundPage";
 import LandingPage from "./Pages/LandingPage";
-import SearchBar, { SearchBarInputModel } from "./components/SearchBar";
+import SearchBar from "./components/SearchBar";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import useDebounce from "./hooks/useDebounce";
 
 function App() {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
-  useEffect(() => {
-    const debounceTimeout = setTimeout(() => {
-      console.log("Performing search for:", searchQuery);
-    }, 500);
+  const debouncedValue = useDebounce(searchQuery);
 
-    return () => clearTimeout(debounceTimeout);
-  }, [searchQuery, navigate]);
-  function handleSearch(value: string) {
+  useEffect(() => {
+    console.log("Searching");
     navigate(`/searchpage`);
+    //api fetch here
+  }, [debouncedValue]);
+
+  function handleSearch(value: string) {
     setSearchQuery(value);
     if (value === "") {
       navigate("/landingpage");
@@ -45,5 +46,5 @@ function App() {
     </div>
   );
 }
-//
+
 export default App;
