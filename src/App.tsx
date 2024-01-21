@@ -6,7 +6,7 @@ import PlayingPage from "./Pages/PlayingPage";
 import PlayedPage from "./Pages/PlayedPage";
 import NotFoundPage from "./Pages/NotFoundPage";
 import LandingPage from "./Pages/LandingPage";
-import SearchBar from "./components/SearchBar";
+import SearchBar, { SearchBarInputModel } from "./components/SearchBar";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
@@ -27,11 +27,12 @@ function App() {
       navigate("/landingpage");
     }
   }
+
   return (
     <div className={"flex flex-row"}>
       <NavBar />
       <div>
-        <SearchBar handleSearch={handleSearch} />
+        <SearchBar data={{ handleSearch }} />
         <Routes>
           <Route path={"searchpage"} element={<SearchPage />}></Route>
           <Route path={"toplaypage"} element={<ToPlayPage />}></Route>
@@ -44,5 +45,5 @@ function App() {
     </div>
   );
 }
-
+//
 export default App;
