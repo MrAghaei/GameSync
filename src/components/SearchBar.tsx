@@ -2,7 +2,19 @@ import TextField from "@mui/material/TextField";
 import { InputAdornment } from "@mui/material";
 
 import SearchIcon from "@mui/icons-material/Search";
+<<<<<<< Updated upstream
 function SearchBar({ handleSearch }) {
+=======
+
+interface SearchBarInputDataModel {
+  handleSearch: any;
+}
+interface SearchBarInputModel {
+  data: SearchBarInputDataModel;
+}
+
+function SearchBar(data: SearchBarInputModel) {
+>>>>>>> Stashed changes
   return (
     <div className={"bg-gray-dark w-full h-16 p-8 "}>
       {/*<div className={"relative"}>*/}

@@ -9,19 +9,20 @@ import LandingPage from "./Pages/LandingPage";
 import SearchBar from "./components/SearchBar";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import useDebounce from "./hooks/useDebounce";
 
 function App() {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
-  useEffect(() => {
-    const debounceTimeout = setTimeout(() => {
-      console.log("Performing search for:", searchQuery);
-    }, 500);
+  const debouncedValue = useDebounce(searchQuery);
 
-    return () => clearTimeout(debounceTimeout);
-  }, [searchQuery, navigate]);
-  function handleSearch(value: string) {
+  useEffect(() => {
+    console.log("Searching");
     navigate(`/searchpage`);
+    //api fetch here
+  }, [debouncedValue]);
+
+  function handleSearch(value: string) {
     setSearchQuery(value);
     if (value === "") {
       navigate("/landingpage");
@@ -31,7 +32,15 @@ function App() {
     <div className={"flex flex-row"}>
       <NavBar />
       <div>
+<<<<<<< Updated upstream
         <SearchBar handleSearch={handleSearch} />
+=======
+        <SearchBar
+          data={{
+            handleSearch,
+          }}
+        />
+>>>>>>> Stashed changes
         <Routes>
           <Route path={"searchpage"} element={<SearchPage />}></Route>
           <Route path={"toplaypage"} element={<ToPlayPage />}></Route>
