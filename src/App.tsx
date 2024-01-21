@@ -48,11 +48,7 @@ function App() {
       <div>
         <SearchBar data={{ handleSearch }} />
         <button onClick={handleOpenDialog}>Open Dialog</button>
-        <DialogBox
-          selectedValue={dialogValue}
-          open={open}
-          onClose={handleClose}
-        />
+        <DialogBox data={{ open, dialogValue, handleClose }} />
         <Routes>
           <Route path={"searchpage"} element={<SearchPage />}></Route>
           <Route path={"toplaypage"} element={<ToPlayPage />}></Route>

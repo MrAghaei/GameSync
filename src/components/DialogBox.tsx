@@ -8,30 +8,26 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Dialog from "@mui/material/Dialog";
-import PersonIcon from "@mui/icons-material/Person";
-import AddIcon from "@mui/icons-material/Add";
-import Typography from "@mui/material/Typography";
-import { blue } from "@mui/material/colors";
 
-export interface SimpleDialogProps {
+export interface DialogBoxInputDataModel {
   open: boolean;
-  selectedValue: string;
-  onClose: (value: string) => void;
+  dialogValue: string;
+  handleClose: (value: string) => void;
 }
-
-function DialogBox(props: SimpleDialogProps) {
-  const { onClose, selectedValue, open } = props;
-
+interface DialogBoxInputModel {
+  data: DialogBoxInputDataModel;
+}
+function DialogBox(data: DialogBoxInputModel) {
   const handleClose = () => {
-    onClose(selectedValue);
+    data.data.handleClose(data.data.dialogValue);
   };
 
   const handleListItemClick = (value: string) => {
-    onClose(value);
+    data.data.handleClose(value);
   };
 
   return (
-    <Dialog onClose={handleClose} open={open}>
+    <Dialog onClose={handleClose} open={data.data.open}>
       <DialogTitle>Choose where you want to add this game.</DialogTitle>
       <List sx={{ pt: 0 }}>
         <ListItem disableGutters>

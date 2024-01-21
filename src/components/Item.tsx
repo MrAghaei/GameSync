@@ -41,15 +41,12 @@ function Item(data: ItemInputModel) {
           >
             {data.data.metacriticScore}
           </p>
-          <PlatformImages platforms={data.data.platforms} />
+          <PlatformImages data={{ platforms: data.data.platforms }} />
         </div>
         <h3 className="font-bold text-2xl text-white">{data.data.gameName}</h3>
       </div>
 
-      <Button
-        buttonType={data.data.buttonType}
-        handleButtonClick={handleButtonClick}
-      />
+      <Button data={{ buttonType: data.data.buttonType, handleButtonClick }} />
     </div>
   );
 }
