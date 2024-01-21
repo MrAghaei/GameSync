@@ -35,23 +35,29 @@ function App() {
     //api fetch here
   }, [debouncedValue]);
 
-  function handleSearch(value: string) {
+  function handleAPISearch(value: string) {
     setSearchQuery(value);
     if (value === "") {
       navigate("/landingpage");
     }
+  }
+  function handleLocalSearch() {
+    console.log("local searching");
   }
 
   return (
     <div className={"flex flex-row"}>
       <NavBar />
       <div>
-        <SearchBar data={{ handleSearch }} />
-        <button onClick={handleOpenDialog}>Open Dialog</button>
+        <SearchBar data={{ handleSearch: handleAPISearch }} />
+        {/*<button onClick={handleOpenDialog}>Open Dialog</button>*/}
         <DialogBox data={{ open, dialogValue, handleClose }} />
         <Routes>
           <Route path={"searchpage"} element={<SearchPage />}></Route>
-          <Route path={"toplaypage"} element={<ToPlayPage />}></Route>
+          <Route
+            path={"toplaypage"}
+            element={<ToPlayPage handleLocalSearch={handleLocalSearch} />}
+          ></Route>
           <Route path={"playingpage"} element={<PlayingPage />}></Route>
           <Route path={"playedpage"} element={<PlayedPage />}></Route>
           <Route path={"landingpage"} element={<LandingPage />}></Route>
