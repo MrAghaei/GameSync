@@ -5,13 +5,16 @@ interface SwiperItemContainerInputDataModel {
   headline: string;
   gameList: ItemInputDataModel[];
 }
+interface SwiperItemContainerInputModel {
+  data: SwiperItemContainerInputDataModel;
+}
 
-function SwiperItemContainer(data: SwiperItemContainerInputDataModel) {
+function SwiperItemContainer(data: SwiperItemContainerInputModel) {
   return (
     <div className={"bg-gray-dark max-w-max h-auto p-10"}>
       <div className="flex flex-col md:flex-row justify-between items-center mb-10">
         <h2 className="text-3xl font-bold text-white mb-4 md:mb-0">
-          {data.headline}
+          {data.data.headline}
         </h2>
         <button className="text-2xl font-bold text-white">See more</button>
       </div>
@@ -42,7 +45,7 @@ function SwiperItemContainer(data: SwiperItemContainerInputDataModel) {
           },
         }}
       >
-        {data.gameList.map((item) => (
+        {data.data.gameList.map((item) => (
           <SwiperSlide key={item.gameName}>
             <Item data={item} key={item.gameName} />
           </SwiperSlide>

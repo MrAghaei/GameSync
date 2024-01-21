@@ -1,10 +1,13 @@
 interface PlatformImagesInputDataModel {
   platforms: string[];
 }
-function PlatformImages(data: PlatformImagesInputDataModel) {
+interface PlatformImagesInputModel {
+  data: PlatformImagesInputDataModel;
+}
+function PlatformImages(data: PlatformImagesInputModel) {
   return (
     <div className={"flex gap-4"}>
-      {data.platforms.map((platform: string) => (
+      {data.data.platforms.map((platform: string) => (
         <img
           key={platform}
           src={`./${platform}.svg`}

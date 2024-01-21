@@ -49,12 +49,10 @@ function LandingPage() {
   return (
     <div className={"bg-amber-300 container"}>
       <SwiperItemContainer
-        headline={landingPageHeadline[0]}
-        gameList={gameList}
+        data={{ headline: landingPageHeadline[0], gameList }}
       />
       <SwiperItemContainer
-        headline={landingPageHeadline[1]}
-        gameList={gameList}
+        data={{ headline: landingPageHeadline[1], gameList }}
       />
     </div>
   );
