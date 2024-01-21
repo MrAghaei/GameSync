@@ -58,8 +58,14 @@ function App() {
             path={"toplaypage"}
             element={<ToPlayPage handleLocalSearch={handleLocalSearch} />}
           ></Route>
-          <Route path={"playingpage"} element={<PlayingPage />}></Route>
-          <Route path={"playedpage"} element={<PlayedPage />}></Route>
+          <Route
+            path={"playingpage"}
+            element={<PlayingPage handleLocalSearch={handleLocalSearch} />}
+          ></Route>
+          <Route
+            path={"playedpage"}
+            element={<PlayedPage handleLocalSearch={handleLocalSearch} />}
+          ></Route>
           <Route path={"landingpage"} element={<LandingPage />}></Route>
           <Route path={"*"} element={<NotFoundPage />}></Route>
         </Routes>

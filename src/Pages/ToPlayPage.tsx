@@ -1,8 +1,5 @@
-import { useState } from "react";
-import Item from "../components/Item";
-
-import SecondarySearchBar from "../components/SecondarySearchBar";
-
+import React, { useState } from "react";
+import LibraryContent from "../components/LibraryContent";
 function ToPlayPage({ handleLocalSearch }) {
   const [toPlayList, setToPlayList] = useState([
     {
@@ -78,24 +75,7 @@ function ToPlayPage({ handleLocalSearch }) {
       buttonType: "Add",
     },
   ]);
-  return (
-    <div className={"bg-gray-dark"}>
-      <SecondarySearchBar data={handleLocalSearch}></SecondarySearchBar>
-      <div
-        className={
-          "bg-gray-dark container w-full h-auto grid grid-cols-4 grid-rows-4 gap-10 p-8"
-        }
-      >
-        {toPlayList.map((item) => (
-          <div key={item.gameName}>
-            <Item data={item} key={item.gameName} />
-          </div>
-        ))}
-
-        <div>test</div>
-      </div>
-    </div>
-  );
+  return <LibraryContent data={{ handleLocalSearch, gameList: toPlayList }} />;
 }
 
 export default ToPlayPage;
