@@ -28,19 +28,12 @@ function App() {
       navigate("/landingpage");
     }
   }
+
   return (
     <div className={"flex flex-row"}>
       <NavBar />
       <div>
-<<<<<<< Updated upstream
-        <SearchBar handleSearch={handleSearch} />
-=======
-        <SearchBar
-          data={{
-            handleSearch,
-          }}
-        />
->>>>>>> Stashed changes
+        <SearchBar data={{ handleSearch }} />
         <Routes>
           <Route path={"searchpage"} element={<SearchPage />}></Route>
           <Route path={"toplaypage"} element={<ToPlayPage />}></Route>
