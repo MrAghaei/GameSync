@@ -10,11 +10,8 @@ export interface SearchBarInputModel {
 }
 
 function SearchBar(data: SearchBarInputModel) {
-  console.log(data);
-  console.log(data.data);
   return (
     <div className={"bg-gray-dark w-full h-16 p-8 "}>
-
       <form>
         <TextField
           id="search-bar"
