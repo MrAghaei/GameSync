@@ -26,7 +26,7 @@ function NavBar() {
         <img src={"./playing-icon.svg"} className={"size-6"} />
         <p>Playing</p>
       </NavLink>
-      <NavLink to={"/Played"} className={"flex gap-2 items-center"}>
+      <NavLink to={"/playedpage"} className={"flex gap-2 items-center"}>
         <img src={"./played-icon.svg"} className={"size-6"} />
         <p>Played</p>
       </NavLink>
