@@ -11,10 +11,23 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import useDebounce from "./hooks/useDebounce";
 
+import * as React from "react";
+import DialogBox from "./components/DialogBox";
+
 function App() {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
   const debouncedValue = useDebounce(searchQuery);
+  const [open, setOpen] = React.useState(false);
+  const [dialogValue, setDialogValue] = React.useState("");
+  const handleOpenDialog = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (value: string) => {
+    setOpen(false);
+    setDialogValue(value);
+  };
 
   useEffect(() => {
     console.log("Searching");
@@ -34,6 +47,12 @@ function App() {
       <NavBar />
       <div>
         <SearchBar data={{ handleSearch }} />
+        <button onClick={handleOpenDialog}>Open Dialog</button>
+        <DialogBox
+          selectedValue={dialogValue}
+          open={open}
+          onClose={handleClose}
+        />
         <Routes>
           <Route path={"searchpage"} element={<SearchPage />}></Route>
           <Route path={"toplaypage"} element={<ToPlayPage />}></Route>
