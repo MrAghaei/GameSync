@@ -13,6 +13,8 @@ import useDebounce from "./hooks/useDebounce";
 
 import * as React from "react";
 import DialogBox from "./components/DialogBox";
+import useOpenDialog from "./hooks/useOpenDialog";
+import { SetOpenContext } from "./Context/context";
 
 function App() {
   const navigate = useNavigate();
@@ -20,9 +22,6 @@ function App() {
   const debouncedValue = useDebounce(searchQuery);
   const [open, setOpen] = React.useState(false);
   const [dialogValue, setDialogValue] = React.useState("");
-  const handleOpenDialog = () => {
-    setOpen(true);
-  };
 
   const handleClose = (value: string) => {
     setOpen(false);
@@ -49,26 +48,28 @@ function App() {
     <div className={"flex flex-row"}>
       <NavBar />
       <div>
-        <SearchBar data={{ handleSearch: handleAPISearch }} />
-        {/*<button onClick={handleOpenDialog}>Open Dialog</button>*/}
-        <DialogBox data={{ open, dialogValue, handleClose }} />
-        <Routes>
-          <Route path={"searchpage"} element={<SearchPage />}></Route>
-          <Route
-            path={"toplaypage"}
-            element={<ToPlayPage handleLocalSearch={handleLocalSearch} />}
-          ></Route>
-          <Route
-            path={"playingpage"}
-            element={<PlayingPage handleLocalSearch={handleLocalSearch} />}
-          ></Route>
-          <Route
-            path={"playedpage"}
-            element={<PlayedPage handleLocalSearch={handleLocalSearch} />}
-          ></Route>
-          <Route path={"landingpage"} element={<LandingPage />}></Route>
-          <Route path={"*"} element={<NotFoundPage />}></Route>
-        </Routes>
+        <SetOpenContext.Provider value={setOpen}>
+          <SearchBar data={{ handleSearch: handleAPISearch }} />
+          {/*<button onClick={handleOpenDialog}>Open Dialog</button>*/}
+          <DialogBox data={{ open, dialogValue, handleClose }} />
+          <Routes>
+            <Route path={"searchpage"} element={<SearchPage />}></Route>
+            <Route
+              path={"toplaypage"}
+              element={<ToPlayPage handleLocalSearch={handleLocalSearch} />}
+            ></Route>
+            <Route
+              path={"playingpage"}
+              element={<PlayingPage handleLocalSearch={handleLocalSearch} />}
+            ></Route>
+            <Route
+              path={"playedpage"}
+              element={<PlayedPage handleLocalSearch={handleLocalSearch} />}
+            ></Route>
+            <Route path={"landingpage"} element={<LandingPage />}></Route>
+            <Route path={"*"} element={<NotFoundPage />}></Route>
+          </Routes>
+        </SetOpenContext.Provider>
       </div>
     </div>
   );
