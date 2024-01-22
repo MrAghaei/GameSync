@@ -14,10 +14,6 @@ export interface ItemInputModel {
 }
 
 function Item(data: ItemInputModel) {
-  function handleButtonClick() {
-    console.log("button clicked");
-  }
-
   return (
     <div className="bg-black-secondary max-w-full md:max-w-72 h-auto md:h-96 rounded-2xl flex flex-col overflow-hidden">
       <div className="w-full h-1/2">
@@ -46,7 +42,7 @@ function Item(data: ItemInputModel) {
         <h3 className="font-bold text-2xl text-white">{data.data.gameName}</h3>
       </div>
 
-      <Button data={{ buttonType: data.data.buttonType, handleButtonClick }} />
+      <Button data={{ buttonType: data.data.buttonType }} />
     </div>
   );
 }

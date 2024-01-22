@@ -1,17 +1,20 @@
+import { SetOpenContext, useUserContext } from "../Context/context";
+import useOpenDialog from "../hooks/useOpenDialog";
+
 interface ButtonInputDataModel {
   buttonType: string;
-  handleButtonClick: any;
 }
 interface ButtonInputModel {
   data: ButtonInputDataModel;
 }
 function Button(data: ButtonInputModel) {
+  const handleOpenDialog = useOpenDialog();
   return (
     <div
       className={
         " bg-purple flex items-center gap-4 justify-center cursor-pointer"
       }
-      onClick={data.data.handleButtonClick}
+      onClick={handleOpenDialog}
     >
       <img
         src={`./${data.data.buttonType}.svg`}
