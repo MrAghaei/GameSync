@@ -47,7 +47,7 @@ function LandingPage() {
     },
   ];
   return (
-    <div className={"bg-amber-300 container"}>
+    <div className={"bg-gray-dark container mx-auto p-4 sm:p-6 lg:p-8 xl:p-10"}>
       <SwiperItemContainer
         data={{ headline: landingPageHeadline[0], gameList }}
       />
