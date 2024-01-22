@@ -17,7 +17,7 @@ function LibraryContent(data: LibraryContentInputModel) {
       ></SecondarySearchBar>
       <div
         className={
-          "bg-gray-dark container w-full h-auto grid grid-cols-4 grid-rows-4 gap-10 p-8"
+          "container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-10 p-4 lg:p-8"
         }
       >
         {data.data.gameList.map((item) => (

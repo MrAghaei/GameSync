@@ -36,16 +36,13 @@ function App() {
 
   function handleAPISearch(value: string) {
     setSearchQuery(value);
-    if (value === "") {
-      navigate("/landingpage");
-    }
   }
   function handleLocalSearch() {
     console.log("local searching");
   }
 
   return (
-    <div className={"flex flex-row"}>
+    <div className={"bg-gray-dark flex flex-row"}>
       <NavBar />
       <div>
         <SetOpenContext.Provider value={setOpen}>
