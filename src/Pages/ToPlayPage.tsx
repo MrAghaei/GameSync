@@ -75,7 +75,16 @@ function ToPlayPage({ handleLocalSearch }) {
       buttonType: "Add",
     },
   ]);
-  return <LibraryContent data={{ handleLocalSearch, gameList: toPlayList }} />;
+  const toPlayPageTitle = "To Play";
+  return (
+    <LibraryContent
+      data={{
+        handleLocalSearch,
+        pageTitle: toPlayPageTitle,
+        gameList: toPlayList,
+      }}
+    />
+  );
 }
 
 export default ToPlayPage;
