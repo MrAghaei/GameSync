@@ -4,6 +4,7 @@ import SecondarySearchBar from "../components/SecondarySearchBar";
 
 interface LibraryContentInputDataModel {
   handleLocalSearch: any;
+  pageTitle: string;
   gameList: any;
 }
 interface LibraryContentInputModel {
@@ -12,6 +13,9 @@ interface LibraryContentInputModel {
 function LibraryContent(data: LibraryContentInputModel) {
   return (
     <div className={"bg-gray-dark"}>
+      <h2 className={"text-white text-4xl mt-10 ml-10"}>
+        {data.data.pageTitle}
+      </h2>
       <SecondarySearchBar
         data={data.data.handleLocalSearch}
       ></SecondarySearchBar>
