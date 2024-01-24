@@ -42,8 +42,9 @@ function App() {
   }
 
   return (
-    <div className={"bg-gray-dark flex flex-row"}>
+    <div className={"bg-gray-dark flex flex-row "}>
       <NavBar />
+
       <div>
         <SetOpenContext.Provider value={setOpen}>
           <SearchBar data={{ handleSearch: handleAPISearch }} />
