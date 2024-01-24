@@ -15,7 +15,7 @@ export interface ItemInputModel {
 
 function Item(data: ItemInputModel) {
   return (
-    <div className="bg-black-secondary max-w-full md:max-w-72 h-auto md:h-96 rounded-2xl flex flex-col overflow-hidden">
+    <div className="bg-black-secondary w-full rounded-2xl flex flex-col overflow-hidden">
       <div className="w-full h-1/2">
         <img
           alt={data.data.imageAlt}
