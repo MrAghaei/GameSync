@@ -42,8 +42,10 @@ function App() {
   }
 
   return (
-    <div className={"bg-gray-dark flex flex-row "}>
-      <NavBar />
+    <div className={"bg-gray-dark flex flex-row min-h-screen"}>
+      <div className={"hidden md:block"}>
+        <NavBar />
+      </div>
 
       <div>
         <SetOpenContext.Provider value={setOpen}>

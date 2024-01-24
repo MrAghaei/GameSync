@@ -36,7 +36,7 @@ function SwiperItemContainer(data: SwiperItemContainerInputModel) {
             spaceBetween: 20,
           },
           768: {
-            slidesPerView: 3,
+            slidesPerView: 5,
             spaceBetween: 30,
           },
           1024: {
