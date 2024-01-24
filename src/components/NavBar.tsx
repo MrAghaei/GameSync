@@ -4,7 +4,7 @@ function NavBar() {
   return (
     <div
       className={
-        "bg-black-secondary w-60 h-auto flex flex-col text-white gap-8 text-xl p-10 "
+        "bg-black-secondary w-full h-full flex flex-col text-white gap-8 text-xl p-10 "
       }
     >
       <img src={"./logo.png"} />

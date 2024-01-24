@@ -15,8 +15,8 @@ export interface ItemInputModel {
 
 function Item(data: ItemInputModel) {
   return (
-    <div className="bg-black-secondary max-w-full md:max-w-72 h-auto md:h-96 rounded-2xl flex flex-col overflow-hidden">
-      <div className="w-full h-1/2">
+    <div className="bg-black-secondary w-full h-full rounded-2xl flex flex-col overflow-hidden">
+      <div className="w-full basis-12 shrink-0">
         <img
           alt={data.data.imageAlt}
           src={data.data.imageSource}
@@ -24,7 +24,7 @@ function Item(data: ItemInputModel) {
         />
       </div>
 
-      <div className="bg-black-secondary w-full h-auto md:h-44 p-3 flex flex-col gap-4 p-5">
+      <div className="bg-black-secondary w-full flex flex-1 flex-col gap-4 p-5">
         <div className="flex flex-col sm:flex-row gap-4 md:items-center">
           <p
             className={`border-2 inline p-1 w-max rounded ${
@@ -41,8 +41,9 @@ function Item(data: ItemInputModel) {
         </div>
         <h3 className="font-bold text-2xl text-white">{data.data.gameName}</h3>
       </div>
-
-      <Button data={{ buttonType: data.data.buttonType }} />
+      <div className={"basis-12"}>
+        <Button data={{ buttonType: data.data.buttonType }} />
+      </div>
     </div>
   );
 }
