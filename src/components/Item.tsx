@@ -24,7 +24,7 @@ function Item(data: ItemInputModel) {
         />
       </div>
 
-      <div className="bg-black-secondary w-full h-auto md:h-44 p-3 flex flex-col gap-4 p-5">
+      <div className="bg-black-secondary w-full h-auto md:h-44 flex flex-col gap-4 p-5">
         <div className="flex flex-col sm:flex-row gap-4 md:items-center">
           <p
             className={`border-2 inline p-1 w-max rounded ${

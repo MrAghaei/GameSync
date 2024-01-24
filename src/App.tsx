@@ -43,14 +43,14 @@ function App() {
 
   return (
     <div className={"bg-gray-dark flex flex-row min-h-screen"}>
-      <div className={"hidden md:block"}>
+      <div className={"hidden md:block w-[30vw]"}>
         <NavBar />
       </div>
 
-      <div>
+      <div className={"w-[70vw]"}>
         <SetOpenContext.Provider value={setOpen}>
           <SearchBar data={{ handleSearch: handleAPISearch }} />
-          {/*<button onClick={handleOpenDialog}>Open Dialog</button>*/}
+
           <DialogBox data={{ open, dialogValue, handleClose }} />
           <Routes>
             <Route path={"searchpage"} element={<SearchPage />}></Route>

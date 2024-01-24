@@ -11,7 +11,7 @@ interface SwiperItemContainerInputModel {
 
 function SwiperItemContainer(data: SwiperItemContainerInputModel) {
   return (
-    <div className={"bg-gray-dark max-w-max h-auto p-10"}>
+    <div className={"bg-gray-dark max-w-max h-auto"}>
       <div className="flex flex-col md:flex-row justify-between items-center mb-10">
         <h2 className="text-3xl font-bold text-white mb-4 md:mb-0">
           {data.data.headline}
@@ -20,7 +20,7 @@ function SwiperItemContainer(data: SwiperItemContainerInputModel) {
       </div>
       <Swiper
         spaceBetween={20}
-        slidesPerView={4}
+        slidesPerView={1}
         navigation
         scrollbar={{ draggable: true }}
         pagination={{ clickable: true }}
@@ -36,12 +36,16 @@ function SwiperItemContainer(data: SwiperItemContainerInputModel) {
             spaceBetween: 20,
           },
           768: {
-            slidesPerView: 5,
+            slidesPerView: 2,
             spaceBetween: 30,
           },
           1024: {
+            slidesPerView: 3,
+            spaceBetween: 30,
+          },
+          1280: {
             slidesPerView: 4,
-            spaceBetween: 50,
+            spaceBetween: 30,
           },
         }}
       >
