@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import LibraryContent from "../components/LibraryContent";
 function ToPlayPage({ handleLocalSearch }) {
+  let id = 0;
+  function getUniqueId(): string {
+    return id++ + "";
+  }
+
   const [toPlayList, setToPlayList] = useState([
     {
       imageAlt: "test",
@@ -9,6 +14,7 @@ function ToPlayPage({ handleLocalSearch }) {
       metacriticScore: 18,
       platforms: ["playstation", "xbox"],
       buttonType: "Add",
+      id: getUniqueId(),
     },
     {
       imageAlt: "test",
@@ -17,6 +23,7 @@ function ToPlayPage({ handleLocalSearch }) {
       metacriticScore: 82,
       platforms: ["playstation", "xbox"],
       buttonType: "Add",
+      id: getUniqueId(),
     },
     {
       imageAlt: "test",
@@ -25,6 +32,7 @@ function ToPlayPage({ handleLocalSearch }) {
       metacriticScore: 85,
       platforms: ["playstation", "xbox"],
       buttonType: "Add",
+      id: getUniqueId(),
     },
     {
       imageAlt: "test",
@@ -33,6 +41,7 @@ function ToPlayPage({ handleLocalSearch }) {
       metacriticScore: 88,
       platforms: ["playstation", "xbox"],
       buttonType: "Add",
+      id: getUniqueId(),
     },
     {
       imageAlt: "test",
@@ -41,6 +50,7 @@ function ToPlayPage({ handleLocalSearch }) {
       metacriticScore: 30,
       platforms: ["playstation", "xbox"],
       buttonType: "Add",
+      id: getUniqueId(),
     },
     {
       imageAlt: "test",
@@ -49,6 +59,7 @@ function ToPlayPage({ handleLocalSearch }) {
       metacriticScore: 56,
       platforms: ["playstation", "xbox"],
       buttonType: "Add",
+      id: getUniqueId(),
     },
     {
       imageAlt: "test",
@@ -57,6 +68,7 @@ function ToPlayPage({ handleLocalSearch }) {
       metacriticScore: 99,
       platforms: ["playstation", "xbox"],
       buttonType: "Add",
+      id: getUniqueId(),
     },
     {
       imageAlt: "test",
@@ -65,6 +77,7 @@ function ToPlayPage({ handleLocalSearch }) {
       metacriticScore: 55,
       platforms: ["playstation", "xbox"],
       buttonType: "Add",
+      id: getUniqueId(),
     },
     {
       imageAlt: "test",
@@ -73,9 +86,12 @@ function ToPlayPage({ handleLocalSearch }) {
       metacriticScore: 32,
       platforms: ["playstation", "xbox"],
       buttonType: "Add",
+      id: getUniqueId(),
     },
   ]);
+
   const toPlayPageTitle = "To Play";
+
   return (
     <LibraryContent
       data={{

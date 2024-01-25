@@ -26,6 +26,16 @@ function App() {
   const handleClose = (value: string) => {
     setOpen(false);
     setDialogValue(value);
+
+    if (value === "toplay") {
+      console.log("added item to To Play page");
+    }
+    if (value === "playing") {
+      console.log("added item to Playing page");
+    }
+    if (value === "played") {
+      console.log("added item to Played page");
+    }
   };
 
   useEffect(() => {
