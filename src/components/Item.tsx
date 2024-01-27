@@ -7,6 +7,7 @@ export interface ItemInputDataModel {
   metacriticScore: number;
   platforms: string[];
   buttonType: string;
+  id: string;
 }
 
 export interface ItemInputModel {
@@ -42,7 +43,7 @@ function Item(data: ItemInputModel) {
         <h3 className="font-bold text-2xl text-white">{data.data.gameName}</h3>
       </div>
       <div className={"basis-12"}>
-        <Button data={{ buttonType: data.data.buttonType }} />
+        <Button data={{ buttonType: data.data.buttonType, id: data.data.id }} />
       </div>
     </div>
   );

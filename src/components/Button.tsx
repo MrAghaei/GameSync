@@ -3,12 +3,13 @@ import useOpenDialog from "../hooks/useOpenDialog";
 
 interface ButtonInputDataModel {
   buttonType: string;
+  id: string;
 }
 interface ButtonInputModel {
   data: ButtonInputDataModel;
 }
 function Button(data: ButtonInputModel) {
-  const handleOpenDialog = useOpenDialog();
+  const handleOpenDialog = useOpenDialog(data.data.id);
   return (
     <div
       className={
