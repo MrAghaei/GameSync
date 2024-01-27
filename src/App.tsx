@@ -264,8 +264,9 @@ function App() {
 
     if (value === "toplay") {
       const item = getItemById(itemId, playedList);
-
-      console.log("added item to To Play page");
+      const newToPlayList = [...playedList, item];
+      console.log(item);
+      console.log("added item to To Play page", newToPlayList);
     }
     if (value === "playing") {
       console.log("added item to Playing page");
