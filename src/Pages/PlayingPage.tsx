@@ -2,6 +2,11 @@ import LibraryContent from "../components/LibraryContent";
 import { useState } from "react";
 
 function ToPlayPage({ handleLocalSearch }) {
+  let id = 0;
+  function getUniqueId(): string {
+    return id++ + "";
+  }
+
   const [playedList, setPlayedList] = useState([
     {
       imageAlt: "test",
@@ -10,6 +15,7 @@ function ToPlayPage({ handleLocalSearch }) {
       metacriticScore: 18,
       platforms: ["playstation", "xbox"],
       buttonType: "Add",
+      id: getUniqueId(),
     },
     {
       imageAlt: "test",
@@ -18,6 +24,7 @@ function ToPlayPage({ handleLocalSearch }) {
       metacriticScore: 82,
       platforms: ["playstation", "xbox"],
       buttonType: "Add",
+      id: getUniqueId(),
     },
     {
       imageAlt: "test",
@@ -26,6 +33,7 @@ function ToPlayPage({ handleLocalSearch }) {
       metacriticScore: 85,
       platforms: ["playstation", "xbox"],
       buttonType: "Add",
+      id: getUniqueId(),
     },
     {
       imageAlt: "test",
@@ -34,6 +42,7 @@ function ToPlayPage({ handleLocalSearch }) {
       metacriticScore: 88,
       platforms: ["playstation", "xbox"],
       buttonType: "Add",
+      id: getUniqueId(),
     },
     {
       imageAlt: "test",
@@ -42,6 +51,7 @@ function ToPlayPage({ handleLocalSearch }) {
       metacriticScore: 30,
       platforms: ["playstation", "xbox"],
       buttonType: "Add",
+      id: getUniqueId(),
     },
     {
       imageAlt: "test",
@@ -50,6 +60,7 @@ function ToPlayPage({ handleLocalSearch }) {
       metacriticScore: 56,
       platforms: ["playstation", "xbox"],
       buttonType: "Add",
+      id: getUniqueId(),
     },
     {
       imageAlt: "test",
@@ -58,6 +69,7 @@ function ToPlayPage({ handleLocalSearch }) {
       metacriticScore: 99,
       platforms: ["playstation", "xbox"],
       buttonType: "Add",
+      id: getUniqueId(),
     },
     {
       imageAlt: "Kill Zone",
@@ -66,6 +78,7 @@ function ToPlayPage({ handleLocalSearch }) {
       metacriticScore: 55,
       platforms: ["playstation", "xbox"],
       buttonType: "Add",
+      id: getUniqueId(),
     },
   ]);
   const playingPageTitle = "Playing";
