@@ -12,14 +12,15 @@ import Dialog from "@mui/material/Dialog";
 export interface DialogBoxInputDataModel {
   open: boolean;
   dialogValue: string;
-  handleClose: (value: string) => void;
+  gameId: string;
+  handleClose: (value?: string) => void;
 }
 interface DialogBoxInputModel {
   data: DialogBoxInputDataModel;
 }
 function DialogBox(data: DialogBoxInputModel) {
   const handleClose = () => {
-    data.data.handleClose(data.data.dialogValue);
+    data.data.handleClose();
   };
 
   const handleListItemClick = (value: string) => {

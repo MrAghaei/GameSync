@@ -258,13 +258,15 @@ function App() {
   function getItemById(idToFind, items) {
     return items.find((item) => item.id === idToFind);
   }
-  const handleClose = (value: string) => {
+  const handleClose = (value?: string) => {
     setOpen(false);
+    if (!value) return;
     setDialogValue(value);
 
     if (value === "toplay") {
       const item = getItemById(itemId, playedList);
       const newToPlayList = [...playedList, item];
+      console.log(itemId);
       console.log(item);
       console.log("added item to To Play page", newToPlayList);
     }
@@ -299,7 +301,6 @@ function App() {
         <SetOpenContext.Provider value={setOpen}>
           <SearchBar data={{ handleSearch: handleAPISearch }} />
 
-          <DialogBox data={{ open, dialogValue, handleClose }} />
           <Routes>
             <Route path={"searchpage"} element={<SearchPage />}></Route>
             <Route

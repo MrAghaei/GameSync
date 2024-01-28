@@ -1,14 +1,15 @@
 import { useState } from "react";
-import Item from "../components/Item";
+import Item, { ItemInputDataModel } from "../components/Item";
 import SecondarySearchBar from "../components/SecondarySearchBar";
 
 interface LibraryContentInputDataModel {
   handleLocalSearch: any;
   pageTitle: string;
-  gameList: any;
+  gameList: ItemInputDataModel[];
 }
 interface LibraryContentInputModel {
   data: LibraryContentInputDataModel;
+  handleOpenDialog: (gameId: string) => void;
 }
 function LibraryContent(data: LibraryContentInputModel) {
   return (
@@ -26,7 +27,13 @@ function LibraryContent(data: LibraryContentInputModel) {
       >
         {data.data.gameList.map((item) => (
           <div key={item.gameName}>
-            <Item data={item} key={item.gameName} />
+            <Item
+              data={item}
+              key={item.gameName}
+              handleOpenDialog={() => {
+                data.handleOpenDialog(item.id);
+              }}
+            />
           </div>
         ))}
       </div>

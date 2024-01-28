@@ -1,5 +1,7 @@
 import PlatformImages from "./PlatformImages";
 import Button from "./Button";
+import useOpenDialog from "../hooks/useOpenDialog";
+import { hasOwnProperty } from "@typescript-eslint/eslint-plugin";
 export interface ItemInputDataModel {
   imageAlt: string;
   imageSource: string;
@@ -12,6 +14,7 @@ export interface ItemInputDataModel {
 
 export interface ItemInputModel {
   data: ItemInputDataModel;
+  handleOpenDialog: () => void;
 }
 
 function Item(data: ItemInputModel) {
@@ -43,7 +46,12 @@ function Item(data: ItemInputModel) {
         <h3 className="font-bold text-2xl text-white">{data.data.gameName}</h3>
       </div>
       <div className={"basis-12"}>
-        <Button data={{ buttonType: data.data.buttonType, id: data.data.id }} />
+        <Button
+          data={{
+            buttonType: data.data.buttonType,
+            handleOpenDialog: data.handleOpenDialog,
+          }}
+        />
       </div>
     </div>
   );

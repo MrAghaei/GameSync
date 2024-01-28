@@ -1,10 +1,9 @@
 import { SetOpenContext, useUserContext } from "../Context/context";
-import { getItemId } from "../App";
 
-export default function useOpenDialog(id: string) {
+export default function useOpenDialog() {
   const setOpen: React.Dispatch<React.SetStateAction<boolean>> =
     useUserContext(SetOpenContext);
-  getItemId(id);
+
   return () => {
     setOpen(true);
   };

@@ -3,19 +3,18 @@ import useOpenDialog from "../hooks/useOpenDialog";
 
 interface ButtonInputDataModel {
   buttonType: string;
-  id: string;
+  handleOpenDialog: () => void;
 }
 interface ButtonInputModel {
   data: ButtonInputDataModel;
 }
 function Button(data: ButtonInputModel) {
-  const handleOpenDialog = useOpenDialog(data.data.id);
   return (
     <div
       className={
         " bg-purple flex items-center h-full gap-4 justify-center cursor-pointer"
       }
-      onClick={handleOpenDialog}
+      onClick={data.data.handleOpenDialog}
     >
       <img
         src={`./${data.data.buttonType}.svg`}
