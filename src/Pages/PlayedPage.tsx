@@ -3,10 +3,12 @@ import LibraryContent from "../components/LibraryContent";
 import {
   fetchPlayedGames,
   fetchToPlayGames,
+  transferItemFromPlayedPage,
   transferItemFromToPlayPage,
 } from "../Services/GameService";
 import DialogBox from "../components/DialogBox";
 import { PageType } from "../models/PageType";
+import { getGamesFromStorage } from "../Services/LocalStorage";
 
 function ToPlayPage({ handleLocalSearch }) {
   const toPlayPageTitle = "To Play";
@@ -14,7 +16,9 @@ function ToPlayPage({ handleLocalSearch }) {
   const [open, setOpen] = React.useState(false);
   const [currentGameId, setCurrentGameId] = React.useState("");
   const [dialogValue, setDialogValue] = React.useState("");
-  const [playedGames, setPlayedGames] = useState([]);
+  const [playedGames, setPlayedGames] = useState(
+    getGamesFromStorage("playedpage"),
+  );
   useEffect(() => {
     const fetchdata = async () => {
       const items = await fetchPlayedGames();
@@ -27,7 +31,7 @@ function ToPlayPage({ handleLocalSearch }) {
     setOpen(false);
     if (!value) return;
     setDialogValue(value);
-    transferItemFromToPlayPage(currentGameId, PageType.PLAYED);
+    transferItemFromPlayedPage(currentGameId, PageType.PLAYED);
   };
 
   const handleOpenDialog = (gameId: string) => {
