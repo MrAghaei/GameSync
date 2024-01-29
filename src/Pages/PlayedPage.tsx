@@ -3,6 +3,7 @@ import LibraryContent from "../components/LibraryContent";
 import {
   fetchPlayedGames,
   fetchToPlayGames,
+  transferItemFromPlayedPage,
   transferItemFromToPlayPage,
 } from "../Services/GameService";
 import DialogBox from "../components/DialogBox";
@@ -27,7 +28,7 @@ function ToPlayPage({ handleLocalSearch }) {
     setOpen(false);
     if (!value) return;
     setDialogValue(value);
-    transferItemFromToPlayPage(currentGameId, PageType.PLAYED);
+    transferItemFromPlayedPage(currentGameId, PageType.PLAYED);
   };
 
   const handleOpenDialog = (gameId: string) => {

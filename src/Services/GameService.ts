@@ -13,7 +13,26 @@ export function transferItemFromToPlayPage(
 
   // add item to the new list
 }
+export function transferItemFromPlayingPage(
+  gameId: string,
+  destinationPage: PageType,
+): void {
+  console.log(gameId);
+  console.log(destinationPage);
+  //remove item from the previous list
 
+  // add item to the new list
+}
+export function transferItemFromPlayedPage(
+  gameId: string,
+  destinationPage: PageType,
+): void {
+  console.log(gameId);
+  console.log(destinationPage);
+  //remove item from the previous list
+
+  // add item to the new list
+}
 export function fetchToPlayGames(): ItemInputDataModel[] {
   return Promise.resolve(toPlayGames);
 }
