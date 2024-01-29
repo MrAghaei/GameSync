@@ -8,6 +8,7 @@ import {
 } from "../Services/GameService";
 import DialogBox from "../components/DialogBox";
 import { PageType } from "../models/PageType";
+import { getGamesFromStorage } from "../Services/LocalStorage";
 
 function ToPlayPage({ handleLocalSearch }) {
   const toPlayPageTitle = "To Play";
@@ -15,7 +16,9 @@ function ToPlayPage({ handleLocalSearch }) {
   const [open, setOpen] = React.useState(false);
   const [currentGameId, setCurrentGameId] = React.useState("");
   const [dialogValue, setDialogValue] = React.useState("");
-  const [playingGames, setPlayingGames] = useState([]);
+  const [playingGames, setPlayingGames] = useState(
+    getGamesFromStorage("playingpage"),
+  );
   useEffect(() => {
     const fetchdata = async () => {
       const items = await fetchPlayingGames();
