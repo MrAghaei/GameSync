@@ -15,10 +15,7 @@ import * as React from "react";
 import DialogBox from "./components/DialogBox";
 import useOpenDialog from "./hooks/useOpenDialog";
 import { SetOpenContext } from "./Context/context";
-let itemId;
-export function getItemId(id: string) {
-  itemId = id;
-}
+
 function App() {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
@@ -26,14 +23,10 @@ function App() {
   const [open, setOpen] = React.useState(false);
   const [dialogValue, setDialogValue] = React.useState("");
 
-  let id = 0;
-  function getUniqueId(): string {
-    return id++ + "";
-  }
-
-  function getItemById(idToFind, items) {
-    return items.find((item) => item.id === idToFind);
-  }
+  const handleClose = (value: string) => {
+    setOpen(false);
+    setDialogValue(value);
+  };
 
   useEffect(() => {
     console.log("Searching");
@@ -58,6 +51,7 @@ function App() {
         <SetOpenContext.Provider value={setOpen}>
           <SearchBar data={{ handleSearch: handleAPISearch }} />
 
+          <DialogBox data={{ open, dialogValue, handleClose }} />
           <Routes>
             <Route path={"searchpage"} element={<SearchPage />}></Route>
             <Route
