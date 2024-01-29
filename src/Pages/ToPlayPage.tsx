@@ -1,105 +1,51 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import LibraryContent from "../components/LibraryContent";
+import {
+  fetchToPlayGames,
+  transferItemFromToPlayPage,
+} from "../Services/GameService";
+import DialogBox from "../components/DialogBox";
+import { PageType } from "../models/PageType";
+
 function ToPlayPage({ handleLocalSearch }) {
-  let id = 0;
-  function getUniqueId(): string {
-    return id++ + "";
-  }
-
-  const [toPlayList, setToPlayList] = useState([
-    {
-      imageAlt: "test",
-      imageSource: "./testback.jpg",
-      gameName: "Metro Exodus 2023",
-      metacriticScore: 18,
-      platforms: ["playstation", "xbox"],
-      buttonType: "Add",
-      id: getUniqueId(),
-    },
-    {
-      imageAlt: "test",
-      imageSource: "./testback.jpg",
-      gameName: "GTA V",
-      metacriticScore: 82,
-      platforms: ["playstation", "xbox"],
-      buttonType: "Add",
-      id: getUniqueId(),
-    },
-    {
-      imageAlt: "test",
-      imageSource: "./testback.jpg",
-      gameName: "Portal",
-      metacriticScore: 85,
-      platforms: ["playstation", "xbox"],
-      buttonType: "Add",
-      id: getUniqueId(),
-    },
-    {
-      imageAlt: "test",
-      imageSource: "./testback.jpg",
-      gameName: "Alan Wake 2",
-      metacriticScore: 88,
-      platforms: ["playstation", "xbox"],
-      buttonType: "Add",
-      id: getUniqueId(),
-    },
-    {
-      imageAlt: "test",
-      imageSource: "./testback.jpg",
-      gameName: "Rainbow Six Siege",
-      metacriticScore: 30,
-      platforms: ["playstation", "xbox"],
-      buttonType: "Add",
-      id: getUniqueId(),
-    },
-    {
-      imageAlt: "test",
-      imageSource: "./testback.jpg",
-      gameName: "Forza Horizon 5",
-      metacriticScore: 56,
-      platforms: ["playstation", "xbox"],
-      buttonType: "Add",
-      id: getUniqueId(),
-    },
-    {
-      imageAlt: "test",
-      imageSource: "./testback.jpg",
-      gameName: "Alan Wake 1",
-      metacriticScore: 99,
-      platforms: ["playstation", "xbox"],
-      buttonType: "Add",
-      id: getUniqueId(),
-    },
-    {
-      imageAlt: "test",
-      imageSource: "./testback.jpg",
-      gameName: "Control",
-      metacriticScore: 55,
-      platforms: ["playstation", "xbox"],
-      buttonType: "Add",
-      id: getUniqueId(),
-    },
-    {
-      imageAlt: "test",
-      imageSource: "./testback.jpg",
-      gameName: "GTA VI",
-      metacriticScore: 32,
-      platforms: ["playstation", "xbox"],
-      buttonType: "Add",
-      id: getUniqueId(),
-    },
-  ]);
-
   const toPlayPageTitle = "To Play";
 
+  const [open, setOpen] = React.useState(false);
+  const [currentGameId, setCurrentGameId] = React.useState("");
+  const [dialogValue, setDialogValue] = React.useState("");
+  const [toPlayItems, setToPlayItems] = useState([]);
+  useEffect(() => {
+    const fetchdata = async () => {
+      const items = await fetchToPlayGames();
+      setToPlayItems(items);
+    };
+    fetchdata();
+  }, []);
+
+  const handleClose = (value?: PageType) => {
+    setOpen(false);
+    if (!value) return;
+    setDialogValue(value);
+    transferItemFromToPlayPage(currentGameId, PageType.TO_PLAY);
+  };
+
+  const handleOpenDialog = (gameId: string) => {
+    setCurrentGameId(gameId);
+    setOpen(true);
+  };
+
   return (
-    <LibraryContent
-      data={{
-        handleLocalSearch,
-        pageTitle: toPlayPageTitle,
-        gameList: toPlayList,
-      }}
-    />
+    <>
+      <DialogBox data={{ open, dialogValue, handleClose }} />
+      <LibraryContent
+        data={{
+          handleLocalSearch,
+          pageTitle: toPlayPageTitle,
+          gameList: toPlayItems,
+        }}
+        handleOpenDialog={handleOpenDialog}
+      />
+    </>
   );
 }
 
