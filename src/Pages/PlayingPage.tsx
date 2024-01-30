@@ -8,31 +8,34 @@ import {
 } from "../Services/GameService";
 import DialogBox from "../components/DialogBox";
 import { PageType } from "../models/PageType";
-import { getGamesFromStorage } from "../Services/LocalStorage";
+import { getGameIdsFromStorage } from "../Services/LocalStorage";
+import { ItemInputDataModel } from "../components/Item";
 
-function ToPlayPage({ handleLocalSearch }) {
-  const toPlayPageTitle = "To Play";
+function PlayingPage({ handleLocalSearch }) {
+  const title = "Playing";
 
-  const [open, setOpen] = React.useState(false);
-  const [currentGameId, setCurrentGameId] = React.useState("");
-  const [dialogValue, setDialogValue] = React.useState("");
-  const [playingGames, setPlayingGames] = useState(() =>
-    getGamesFromStorage("playingpage"),
+  const [open, setOpen] = useState(false);
+  const [currentGameId, setCurrentGameId] = useState("");
+  const [dialogValue, setDialogValue] = useState("");
+  const [gameIds, setGameIds] = useState(() =>
+    getGameIdsFromStorage("playingpage"),
   );
-  // useEffect(() => {
-  //   const fetchdata = async () => {
-  //     const items = await fetchPlayingGames();
-  //
-  //     // setPlayingGames(items);
-  //   };
-  //   fetchdata();
-  // }, []);
+  const [gameItems, setGameItems] = useState([] as ItemInputDataModel[]);
+  useEffect(() => {
+    const fetchdata = async () => {
+      const items = await fetchPlayingGames();
+      setGameItems(items);
+    };
+    fetchdata();
+  }, [gameIds]);
 
   const handleClose = (value?: PageType) => {
     setOpen(false);
     if (!value) return;
     setDialogValue(value);
-    transferItemFromPlayingPage(currentGameId, PageType.PLAYING);
+    transferItemFromPlayingPage(currentGameId, value);
+
+    setGameIds(getGameIdsFromStorage("playingpage"));
   };
 
   const handleOpenDialog = (gameId: string) => {
@@ -46,8 +49,8 @@ function ToPlayPage({ handleLocalSearch }) {
       <LibraryContent
         data={{
           handleLocalSearch,
-          pageTitle: toPlayPageTitle,
-          gameList: playingGames,
+          pageTitle: title,
+          gameList: gameItems,
         }}
         handleOpenDialog={handleOpenDialog}
       />
@@ -55,4 +58,4 @@ function ToPlayPage({ handleLocalSearch }) {
   );
 }
 
-export default ToPlayPage;
+export default PlayingPage;

@@ -2,36 +2,42 @@ import React, { useEffect, useState } from "react";
 import LibraryContent from "../components/LibraryContent";
 import {
   fetchPlayedGames,
+  fetchPlayingGames,
   fetchToPlayGames,
   transferItemFromPlayedPage,
+  transferItemFromPlayingPage,
   transferItemFromToPlayPage,
 } from "../Services/GameService";
 import DialogBox from "../components/DialogBox";
 import { PageType } from "../models/PageType";
-import { getGamesFromStorage } from "../Services/LocalStorage";
+import { getGameIdsFromStorage } from "../Services/LocalStorage";
+import { ItemInputDataModel } from "../components/Item";
 
-function ToPlayPage({ handleLocalSearch }) {
-  const toPlayPageTitle = "To Play";
+function PlayedPage({ handleLocalSearch }) {
+  const title = "Played";
 
-  const [open, setOpen] = React.useState(false);
-  const [currentGameId, setCurrentGameId] = React.useState("");
-  const [dialogValue, setDialogValue] = React.useState("");
-  const [playedGames, setPlayedGames] = useState(() =>
-    getGamesFromStorage("playedpage"),
+  const [open, setOpen] = useState(false);
+  const [currentGameId, setCurrentGameId] = useState("");
+  const [dialogValue, setDialogValue] = useState("");
+  const [gameIds, setGameIds] = useState(() =>
+    getGameIdsFromStorage("playedpage"),
   );
-  // useEffect(() => {
-  //   const fetchdata = async () => {
-  //     const items = await fetchPlayedGames();
-  //     setPlayedGames(items);
-  //   };
-  //   fetchdata();
-  // }, []);
+  const [gameItems, setGameItems] = useState([] as ItemInputDataModel[]);
+  useEffect(() => {
+    const fetchdata = async () => {
+      const items = await fetchPlayedGames();
+      setGameItems(items);
+    };
+    fetchdata();
+  }, [gameIds]);
 
   const handleClose = (value?: PageType) => {
     setOpen(false);
     if (!value) return;
     setDialogValue(value);
-    transferItemFromPlayedPage(currentGameId, PageType.PLAYED);
+    transferItemFromPlayedPage(currentGameId, value);
+
+    setGameIds(getGameIdsFromStorage("playedpage"));
   };
 
   const handleOpenDialog = (gameId: string) => {
@@ -45,8 +51,8 @@ function ToPlayPage({ handleLocalSearch }) {
       <LibraryContent
         data={{
           handleLocalSearch,
-          pageTitle: toPlayPageTitle,
-          gameList: playedGames,
+          pageTitle: title,
+          gameList: gameItems,
         }}
         handleOpenDialog={handleOpenDialog}
       />
@@ -54,4 +60,4 @@ function ToPlayPage({ handleLocalSearch }) {
   );
 }
 
-export default ToPlayPage;
+export default PlayedPage;

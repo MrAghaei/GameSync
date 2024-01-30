@@ -15,6 +15,7 @@ import * as React from "react";
 import DialogBox from "./components/DialogBox";
 import useOpenDialog from "./hooks/useOpenDialog";
 import { SetOpenContext } from "./Context/context";
+import { games } from "./mock/Games";
 
 function App() {
   const navigate = useNavigate();
@@ -31,6 +32,7 @@ function App() {
   useEffect(() => {
     console.log("Searching");
     navigate(`/searchpage`);
+    // localStorage.setItem("toplaypage", JSON.stringify(["1", "3", "4", "9"]));
     //api fetch here
   }, [debouncedValue]);
 
