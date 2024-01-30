@@ -6,30 +6,34 @@ import {
 } from "../Services/GameService";
 import DialogBox from "../components/DialogBox";
 import { PageType } from "../models/PageType";
-import { getGamesFromStorage } from "../Services/LocalStorage";
+import { getGameIdsFromStorage } from "../Services/LocalStorage";
+import { ItemInputDataModel } from "../components/Item";
 
 function ToPlayPage({ handleLocalSearch }) {
-  const toPlayPageTitle = "To Play";
+  const title = "To Play";
 
-  const [open, setOpen] = React.useState(false);
-  const [currentGameId, setCurrentGameId] = React.useState("");
-  const [dialogValue, setDialogValue] = React.useState("");
-  const [toPlayItems, setToPlayItems] = useState(
-    getGamesFromStorage("toplaypage"),
+  const [open, setOpen] = useState(false);
+  const [currentGameId, setCurrentGameId] = useState("");
+  const [dialogValue, setDialogValue] = useState("");
+  const [gameIds, setGameIds] = useState(() =>
+    getGameIdsFromStorage("toplaypage"),
   );
+  const [gameItems, setGameItems] = useState([] as ItemInputDataModel[]);
   useEffect(() => {
     const fetchdata = async () => {
       const items = await fetchToPlayGames();
-      setToPlayItems(items);
+      setGameItems(items);
     };
     fetchdata();
-  }, []);
+  }, [gameIds]);
 
   const handleClose = (value?: PageType) => {
     setOpen(false);
     if (!value) return;
     setDialogValue(value);
     transferItemFromToPlayPage(currentGameId, value);
+
+    setGameIds(getGameIdsFromStorage("toplaypage"));
   };
 
   const handleOpenDialog = (gameId: string) => {
@@ -43,8 +47,8 @@ function ToPlayPage({ handleLocalSearch }) {
       <LibraryContent
         data={{
           handleLocalSearch,
-          pageTitle: toPlayPageTitle,
-          gameList: toPlayItems,
+          pageTitle: title,
+          gameList: gameItems,
         }}
         handleOpenDialog={handleOpenDialog}
       />

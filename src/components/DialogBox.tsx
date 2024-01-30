@@ -8,6 +8,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Dialog from "@mui/material/Dialog";
+import { PageType } from "../models/PageType";
 
 export interface DialogBoxInputDataModel {
   open: boolean;
@@ -34,7 +35,7 @@ function DialogBox(data: DialogBoxInputModel) {
         <ListItem disableGutters>
           <ListItemButton
             autoFocus
-            onClick={() => handleListItemClick("toplay")}
+            onClick={() => handleListItemClick(PageType.TO_PLAY)}
           >
             <ListItemAvatar>
               <Avatar>
@@ -47,7 +48,7 @@ function DialogBox(data: DialogBoxInputModel) {
         <ListItem disableGutters>
           <ListItemButton
             autoFocus
-            onClick={() => handleListItemClick("playing")}
+            onClick={() => handleListItemClick(PageType.PLAYING)}
           >
             <ListItemAvatar>
               <Avatar>
@@ -60,7 +61,7 @@ function DialogBox(data: DialogBoxInputModel) {
         <ListItem disableGutters>
           <ListItemButton
             autoFocus
-            onClick={() => handleListItemClick("played")}
+            onClick={() => handleListItemClick(PageType.PLAYED)}
           >
             <ListItemAvatar>
               <Avatar>
