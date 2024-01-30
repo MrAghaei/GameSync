@@ -16,16 +16,16 @@ function ToPlayPage({ handleLocalSearch }) {
   const [open, setOpen] = React.useState(false);
   const [currentGameId, setCurrentGameId] = React.useState("");
   const [dialogValue, setDialogValue] = React.useState("");
-  const [playedGames, setPlayedGames] = useState(
+  const [playedGames, setPlayedGames] = useState(() =>
     getGamesFromStorage("playedpage"),
   );
-  useEffect(() => {
-    const fetchdata = async () => {
-      const items = await fetchPlayedGames();
-      setPlayedGames(items);
-    };
-    fetchdata();
-  }, []);
+  // useEffect(() => {
+  //   const fetchdata = async () => {
+  //     const items = await fetchPlayedGames();
+  //     setPlayedGames(items);
+  //   };
+  //   fetchdata();
+  // }, []);
 
   const handleClose = (value?: PageType) => {
     setOpen(false);
