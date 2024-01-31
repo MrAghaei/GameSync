@@ -1,58 +1,53 @@
 import Item, { ItemInputDataModel } from "../components/Item";
 import SwiperItemContainer from "../components/SwiperItemContainer";
+import React, { useEffect, useState } from "react";
+import {
+  fetchLandingPageGames,
+  fetchToPlayGames,
+  transferItemFromLandingPage,
+  transferItemFromToPlayPage,
+} from "../Services/GameService";
+import DialogBox from "../components/DialogBox";
+import { PageType } from "../models/PageType";
+import { getGameIdsFromStorage } from "../Services/LocalStorage";
 
 function LandingPage() {
   const landingPageHeadline = ["Popular", "Top Games"];
-
-  const gameList: ItemInputDataModel[] = [
-    {
-      imageAlt: "test",
-      imageSource: "./testback.jpg",
-      gameName: "Metro Exodus 2023",
-      metacriticScore: 88,
-      platforms: ["playstation", "xbox"],
-      buttonType: "Add",
-    },
-    {
-      imageAlt: "test",
-      imageSource: "./testback.jpg",
-      gameName: "GTA V",
-      metacriticScore: 88,
-      platforms: ["playstation", "xbox"],
-      buttonType: "Add",
-    },
-    {
-      imageAlt: "test",
-      imageSource: "./testback.jpg",
-      gameName: "Portal",
-      metacriticScore: 88,
-      platforms: ["playstation", "xbox"],
-      buttonType: "Add",
-    },
-    {
-      imageAlt: "test",
-      imageSource: "./testback.jpg",
-      gameName: "Alan Wake 2",
-      metacriticScore: 88,
-      platforms: ["playstation", "xbox"],
-      buttonType: "Add",
-    },
-    {
-      imageAlt: "test",
-      imageSource: "./testback.jpg",
-      gameName: "Rainbow Six Siege",
-      metacriticScore: 30,
-      platforms: ["playstation", "xbox"],
-      buttonType: "Add",
-    },
-  ];
+  const [gameItems, setGameItems] = useState([] as ItemInputDataModel[]);
+  const [open, setOpen] = useState(false);
+  const [currentGameId, setCurrentGameId] = useState("");
+  const [dialogValue, setDialogValue] = useState("");
+  const [gameIds, setGameIds] = useState(() =>
+    getGameIdsFromStorage("toplaypage"),
+  );
+  useEffect(() => {
+    const fetchdata = async () => {
+      const items = await fetchLandingPageGames();
+      setGameItems(items);
+    };
+    fetchdata();
+  }, [gameIds]);
+  const handleOpenDialog = (gameId: string) => {
+    setCurrentGameId(gameId);
+    setOpen(true);
+  };
+  const handleClose = (value?: PageType) => {
+    setOpen(false);
+    if (!value) return;
+    setDialogValue(value);
+    transferItemFromLandingPage(currentGameId, value);
+    setGameIds(getGameIdsFromStorage("landingpage"));
+  };
   return (
     <div className={"bg-gray-dark p-10 flex flex-col gap-10"}>
+      <DialogBox data={{ open, dialogValue, handleClose }} />
       <SwiperItemContainer
-        data={{ headline: landingPageHeadline[0], gameList }}
+        data={{ headline: landingPageHeadline[0], gameList: gameItems }}
+        handleOpenDialog={handleOpenDialog}
       />
       <SwiperItemContainer
-        data={{ headline: landingPageHeadline[1], gameList }}
+        data={{ headline: landingPageHeadline[1], gameList: gameItems }}
+        handleOpenDialog={handleOpenDialog}
       />
     </div>
   );

@@ -7,6 +7,7 @@ interface SwiperItemContainerInputDataModel {
 }
 interface SwiperItemContainerInputModel {
   data: SwiperItemContainerInputDataModel;
+  handleOpenDialog: (gameId: string) => void;
 }
 
 function SwiperItemContainer(data: SwiperItemContainerInputModel) {
@@ -51,7 +52,13 @@ function SwiperItemContainer(data: SwiperItemContainerInputModel) {
       >
         {data.data.gameList.map((item) => (
           <SwiperSlide key={item.gameName}>
-            <Item data={item} key={item.gameName} />
+            <Item
+              data={item}
+              key={item.gameName}
+              handleOpenDialog={() => {
+                data.handleOpenDialog(item.id);
+              }}
+            />
           </SwiperSlide>
         ))}
       </Swiper>
