@@ -87,9 +87,9 @@ export function transferItemFromLandingPage(
   gameId: string,
   destinationPage: string,
 ): void {
-  const storedPlayedGamesIds = getGameIdsFromStorage("landingpage");
+  // const storedPlayedGamesIds = getGameIdsFromStorage("landingpage");
 
-  const idToRemove = storedPlayedGamesIds.find((id) => id === gameId);
+  const idToRemove = games.find((item) => item.id === gameId);
   if (idToRemove === undefined) return;
 
   // const updatedPlayedGames = storedPlayedGamesIds.filter((item) => {
@@ -99,15 +99,15 @@ export function transferItemFromLandingPage(
   // add item to the new list
   if (destinationPage === PageType.PLAYING) {
     const storedPlayingGamesIds = getGameIdsFromStorage("playingpage");
-    const updatedPlayingGamesIds = [...storedPlayingGamesIds, idToRemove];
+    const updatedPlayingGamesIds = [...storedPlayingGamesIds, idToRemove.id];
     setGameIdsToLocalStorage("playingpage", updatedPlayingGamesIds);
   } else if (destinationPage === PageType.TO_PLAY) {
     const storedToPlayGamesIds = getGameIdsFromStorage("toplaypage");
-    const updatedToPlayGamesIds = [...storedToPlayGamesIds, idToRemove];
+    const updatedToPlayGamesIds = [...storedToPlayGamesIds, idToRemove.id];
     setGameIdsToLocalStorage("toplaypage", updatedToPlayGamesIds);
   } else if (destinationPage === PageType.PLAYED) {
     const storedPlayedGamesIds = getGameIdsFromStorage("playedpage");
-    const updatedPlayedGamesIds = [...storedPlayedGamesIds, idToRemove];
+    const updatedPlayedGamesIds = [...storedPlayedGamesIds, idToRemove.id];
     setGameIdsToLocalStorage("playedpage", updatedPlayedGamesIds);
   }
 }
@@ -136,12 +136,12 @@ export function fetchPlayedGames(): Promise<ItemInputDataModel[]> {
   return Promise.resolve(filteredItems);
 }
 export function fetchLandingPageGames(): Promise<ItemInputDataModel[]> {
-  const storedLandingPage = getGameIdsFromStorage("landingpage");
-  const filteredItems = games.filter((item) =>
-    storedLandingPage.includes(item.id),
-  );
+  // const storedLandingPage = getGameIdsFromStorage("landingpage");
+  // const filteredItems = games.filter((item) =>
+  //   storedLandingPage.includes(item.id),
+  // );
 
-  return Promise.resolve(filteredItems);
+  return Promise.resolve(games);
 }
 export function fetchSearchGames(): Promise<ItemInputDataModel[]> {
   return Promise.resolve(games);
