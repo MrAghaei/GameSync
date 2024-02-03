@@ -16,7 +16,7 @@ function ToPlayPage({ handleLocalSearch }) {
   const [currentGameId, setCurrentGameId] = useState("");
   const [dialogValue, setDialogValue] = useState("");
   const [gameIds, setGameIds] = useState(() =>
-    getGameIdsFromStorage("toplaypage"),
+    getGameIdsFromStorage(PageType.TO_PLAY),
   );
   const [gameItems, setGameItems] = useState([] as ItemInputDataModel[]);
   useEffect(() => {
@@ -33,7 +33,7 @@ function ToPlayPage({ handleLocalSearch }) {
     setDialogValue(value);
     transferItemFromToPlayPage(currentGameId, value);
 
-    setGameIds(getGameIdsFromStorage("toplaypage"));
+    setGameIds(getGameIdsFromStorage(PageType.TO_PLAY));
   };
 
   const handleOpenDialog = (gameId: string) => {
