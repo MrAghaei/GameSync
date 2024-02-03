@@ -1,5 +1,5 @@
 import { ItemInputDataModel } from "../components/Item";
-import { games, playedGames, playingGames, toPlayGames } from "../mock/Games";
+import { games } from "../mock/Games";
 import { PageType } from "../models/PageType";
 import {
   getGameIdsFromStorage,
@@ -30,6 +30,13 @@ export function transferItemFromToPlayPage(
     const storedPlayedGamesIds = getGameIdsFromStorage("playedpage");
     const updatedPlayedGamesIds = [...storedPlayedGamesIds, idToRemove];
     setGameIdsToLocalStorage("playedpage", updatedPlayedGamesIds);
+  } else if (destinationPage === PageType.DELETE) {
+    const idToRemove = storedToPlayGamesIds.find((id) => id === gameId);
+    if (idToRemove === undefined) return;
+    const updatedToPlayGames = storedToPlayGamesIds.filter((item) => {
+      return item !== gameId;
+    });
+    setGameIdsToLocalStorage("toplaypage", updatedToPlayGames);
   }
 }
 export function transferItemFromPlayingPage(
@@ -55,6 +62,13 @@ export function transferItemFromPlayingPage(
     const storedPlayedGamesIds = getGameIdsFromStorage("playedpage");
     const updatedPlayedGamesIds = [...storedPlayedGamesIds, idToRemove];
     setGameIdsToLocalStorage("playedpage", updatedPlayedGamesIds);
+  } else if (destinationPage === PageType.DELETE) {
+    const idToRemove = storedPlayingGamesIds.find((id) => id === gameId);
+    if (idToRemove === undefined) return;
+    const updatedToPlayGames = storedPlayingGamesIds.filter((item) => {
+      return item !== gameId;
+    });
+    setGameIdsToLocalStorage("playingpage", updatedToPlayGames);
   }
 }
 export function transferItemFromPlayedPage(
@@ -81,6 +95,13 @@ export function transferItemFromPlayedPage(
     const storedToPlayGamesIds = getGameIdsFromStorage("toplaypage");
     const updatedToPlayGamesIds = [...storedToPlayGamesIds, idToRemove];
     setGameIdsToLocalStorage("toplaypage", updatedToPlayGamesIds);
+  } else if (destinationPage === PageType.DELETE) {
+    const idToRemove = storedPlayedGamesIds.find((id) => id === gameId);
+    if (idToRemove === undefined) return;
+    const updatedToPlayGames = storedPlayedGamesIds.filter((item) => {
+      return item !== gameId;
+    });
+    setGameIdsToLocalStorage("playingpage", updatedToPlayGames);
   }
 }
 export function transferItemFromLandingPage(

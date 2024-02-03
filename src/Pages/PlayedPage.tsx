@@ -47,7 +47,9 @@ function PlayedPage({ handleLocalSearch }) {
 
   return (
     <>
-      <DialogBox data={{ open, dialogValue, handleClose }} />
+      <DialogBox
+        data={{ open, dialogValue, handleClose, pageType: PageType.PLAYED }}
+      />
       <LibraryContent
         data={{
           handleLocalSearch,
