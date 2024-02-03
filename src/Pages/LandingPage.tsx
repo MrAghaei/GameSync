@@ -40,7 +40,9 @@ function LandingPage() {
   };
   return (
     <div className={"bg-gray-dark p-10 flex flex-col gap-10"}>
-      <DialogBox data={{ open, dialogValue, handleClose }} />
+      <DialogBox
+        data={{ open, dialogValue, handleClose, pageType: PageType.LANDING }}
+      />
       <SwiperItemContainer
         data={{ headline: landingPageHeadline[0], gameList: gameItems }}
         handleOpenDialog={handleOpenDialog}

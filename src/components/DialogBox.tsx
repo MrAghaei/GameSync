@@ -15,6 +15,7 @@ export interface DialogBoxInputDataModel {
   dialogValue: string;
   gameId: string;
   handleClose: (value?: string) => void;
+  pageType: string;
 }
 interface DialogBoxInputModel {
   data: DialogBoxInputDataModel;
@@ -28,6 +29,12 @@ function DialogBox(data: DialogBoxInputModel) {
     data.data.handleClose(value);
   };
 
+  function shouldDisplayDeleteButton(): boolean {
+    return !(
+      data.data.pageType === PageType.LANDING ||
+      data.data.pageType === PageType.SEARCH
+    );
+  }
   return (
     <Dialog onClose={handleClose} open={data.data.open}>
       <DialogTitle>Choose where you want to add this game.</DialogTitle>
@@ -71,6 +78,23 @@ function DialogBox(data: DialogBoxInputModel) {
             <ListItemText primary="Played" />
           </ListItemButton>
         </ListItem>
+        {shouldDisplayDeleteButton() ? (
+          <ListItem disableGutters>
+            <ListItemButton
+              autoFocus
+              onClick={() => handleListItemClick(PageType.DELETE)}
+            >
+              <ListItemAvatar>
+                <Avatar>
+                  <img src={"./delete-icon.svg"} alt={"deleticon"} />
+                </Avatar>
+              </ListItemAvatar>
+              <ListItemText primary="Delete" />
+            </ListItemButton>
+          </ListItem>
+        ) : (
+          ""
+        )}
       </List>
     </Dialog>
   );
