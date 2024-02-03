@@ -19,7 +19,6 @@ function SearchPage() {
     if (!value) return;
     setDialogValue(value);
     transferItemFromLandingPage(currentGameId, value);
-    // setGameIds(getGameIdsFromStorage("landingpage"));
   };
   return (
     <div>
