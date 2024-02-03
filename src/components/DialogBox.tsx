@@ -39,45 +39,57 @@ function DialogBox(data: DialogBoxInputModel) {
     <Dialog onClose={handleClose} open={data.data.open}>
       <DialogTitle>Choose where you want to add this game.</DialogTitle>
       <List sx={{ pt: 0 }}>
-        <ListItem disableGutters>
-          <ListItemButton
-            autoFocus
-            onClick={() => handleListItemClick(PageType.TO_PLAY)}
-          >
-            <ListItemAvatar>
-              <Avatar>
-                <img src={"./toplay-icon.svg"} alt={"toplayicon"} />
-              </Avatar>
-            </ListItemAvatar>
-            <ListItemText primary="To Play" />
-          </ListItemButton>
-        </ListItem>
-        <ListItem disableGutters>
-          <ListItemButton
-            autoFocus
-            onClick={() => handleListItemClick(PageType.PLAYING)}
-          >
-            <ListItemAvatar>
-              <Avatar>
-                <img src={"./playing-icon.svg"} alt={"playingicon"} />
-              </Avatar>
-            </ListItemAvatar>
-            <ListItemText primary="Playing" />
-          </ListItemButton>
-        </ListItem>
-        <ListItem disableGutters>
-          <ListItemButton
-            autoFocus
-            onClick={() => handleListItemClick(PageType.PLAYED)}
-          >
-            <ListItemAvatar>
-              <Avatar>
-                <img src={"./played-icon.svg"} alt={"playedicon"} />
-              </Avatar>
-            </ListItemAvatar>
-            <ListItemText primary="Played" />
-          </ListItemButton>
-        </ListItem>
+        {data.data.pageType === PageType.TO_PLAY ? (
+          ""
+        ) : (
+          <ListItem disableGutters>
+            <ListItemButton
+              autoFocus
+              onClick={() => handleListItemClick(PageType.TO_PLAY)}
+            >
+              <ListItemAvatar>
+                <Avatar>
+                  <img src={"./toplay-icon.svg"} alt={"toplayicon"} />
+                </Avatar>
+              </ListItemAvatar>
+              <ListItemText primary="To Play" />
+            </ListItemButton>
+          </ListItem>
+        )}
+        {data.data.pageType === PageType.PLAYING ? (
+          ""
+        ) : (
+          <ListItem disableGutters>
+            <ListItemButton
+              autoFocus
+              onClick={() => handleListItemClick(PageType.PLAYING)}
+            >
+              <ListItemAvatar>
+                <Avatar>
+                  <img src={"./playing-icon.svg"} alt={"playingicon"} />
+                </Avatar>
+              </ListItemAvatar>
+              <ListItemText primary="Playing" />
+            </ListItemButton>
+          </ListItem>
+        )}
+        {data.data.pageType === PageType.PLAYED ? (
+          ""
+        ) : (
+          <ListItem disableGutters>
+            <ListItemButton
+              autoFocus
+              onClick={() => handleListItemClick(PageType.PLAYED)}
+            >
+              <ListItemAvatar>
+                <Avatar>
+                  <img src={"./played-icon.svg"} alt={"playedicon"} />
+                </Avatar>
+              </ListItemAvatar>
+              <ListItemText primary="Played" />
+            </ListItemButton>
+          </ListItem>
+        )}
         {shouldDisplayDeleteButton() ? (
           <ListItem disableGutters>
             <ListItemButton
