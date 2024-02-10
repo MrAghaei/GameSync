@@ -31,7 +31,7 @@ export function transferItem(
   const storeIds = getGameIdsFromStorage(source);
   const idToRemove = storeIds.find((id) => id === gameId);
   if (idToRemove === undefined) return; //TODO make this show a dialog that data is not updated. refresh your browser
-  removeItemFromPage(gameId, destinationPage, storeIds);
+  removeItemFromPage(gameId, source, storeIds);
   if (destinationPage === PageType.DELETE) return;
   // add item to the new list
   addItemToPage(idToRemove, destinationPage);
