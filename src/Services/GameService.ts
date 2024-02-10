@@ -8,6 +8,7 @@ import {
 
 function addItemToPage(itemId: string, page: PageType): void {
   const storedDestinationPageIds = getGameIdsFromStorage(page);
+  if (storedDestinationPageIds.includes(itemId)) return; //TODO show a dialog that item is already in the list
   const updatedDestinationPageIds = [...storedDestinationPageIds, itemId];
   setGameIdsToLocalStorage(page, updatedDestinationPageIds);
 }
